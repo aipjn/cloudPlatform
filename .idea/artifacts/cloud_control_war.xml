@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="cloud_control:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="maven_springmvc.war">
+      <element id="artifact" artifact-name="cloud_control:war exploded" />
+    </root>
+  </artifact>
+</component>
