@@ -27,6 +27,11 @@ public class HomeController {
         return "home";
     }
 
+    @RequestMapping("/signup")
+    public String signup(){
+        return "signup";
+    }
+
     //映射一个action
     @RequestMapping("/home")
     public String home(@RequestParam("name")String name){
