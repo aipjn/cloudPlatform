@@ -30,4 +30,9 @@ public class UserDao {
         return user;
     }
 
+    public void addUser(final User user) {
+        String sql = "insert into user values('1111',?,?)";
+        cloudJdbcTemplate.update(sql, user.getName(), user.getPassword());
+    }
+
 }

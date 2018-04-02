@@ -6,6 +6,7 @@
     <meta name="description" content="Sing in">
     <meta name="author" content="Jijing">
     <link rel="icon" href="image/sheffield_573b22062c317.png">
+    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 
     <title>Sign up</title>
 
@@ -16,8 +17,30 @@
     <link href="css/signin.css" rel="stylesheet">
 
     <script>
+
         function createAccount() {
-            window.location.href="index.html"
+
+            var email = $("#inputEmail").val();
+            var name = $("#userName").val();
+            var password = $("#inputPassword").val();
+            var d={
+                name: name,
+                email: email,
+                password: password
+            };
+            $.ajax({
+                url: 'addUser',
+                method: 'post',
+                contentType:"application/json",
+                data: JSON.stringify(d),
+                success: function (data) {
+                    window.location.href = "home?name=" + data.name;
+                    return true;
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
         }
     </script>
 </head>

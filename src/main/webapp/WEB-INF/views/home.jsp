@@ -1,125 +1,50 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <title>demo</title>
-
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <title>home</title>
 </head>
 
-<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
-<script type="text/javascript" >
-//    $(function(){
-//        alert("hello")
-//    });
-
-    function ajax(){
-        var d={
-            ID:"11",
-            name:"peng",
-            password:"123456"
-        };
-        debugger;
-        $.ajax({
-            url: '/updateAttr',
-            method: 'post',
-            contentType:"application/json",
-            data: JSON.stringify(d),
-            success: function (data) {
-                alert(data.status);
-                return true;
-            },
-            error: function () {
-                alert("error");
-            }
-        });
-    }
-</script>
 <body>
 
-<ul class="nav nav-justified" style="background:  blanchedalmond;height: 6rem;">
 
-    <li class="nav-item">
+<div class="w3-teal">
 
-        <a class="nav-link active" href="#">Active</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-        <p>Name</p>
-    </li>
-</ul>
-<div class="container">
-    <div class="row" >
-        <div class="col-sm-4" style=" padding-top:1rem;">
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="image/demo.jpeg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
+    <div class="w3-bar w3-black">
+        <a href="#" class="w3-bar-item w3-button">Home</a>
+        <a href="upload" class="w3-bar-item w3-button">Upload</a>
+        <a href="#" class="w3-bar-item w3-button">Login</a>
     </div>
-        </div>
-        <div class="col-sm-4" style=" padding-top:1rem;">
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="image/demo.jpeg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
+
+    <div class="w3-container">
+        <h1>Home</h1>
     </div>
-    </div>
-            <div class="col-sm-4" style=" padding-top:1rem;">
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="image/demo.jpeg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-    </div>
+</div>
+
+<div class="w3-container" style="display: -webkit-inline-box;">
+
+    <c:forEach var="app" items="${apps}"
+               varStatus="status">
+
+        <div class="w3-card-4" style="width:30%;margin: 10px">
+            <header class="w3-container w3-light-grey">
+                <h3>${app.name}</h3>
+            </header>
+            <div class="w3-container">
+                <img src="${app.icon}" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                     style="width:100px;height: 100px;margin-top: 20px;">
+                <p>${app.description}</p><br>
             </div>
-
-        <div class="col-sm-4" style=" padding-top:1rem;">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="image/demo.jpeg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
+            <button class="w3-button w3-block w3-dark-grey">Open</button>
         </div>
-        <div class="col-sm-4" style=" padding-top:1rem;">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="image/demo.jpeg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4" style=" padding-top:1rem;">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="image/demo.jpeg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    </c:forEach>
 
 
-    <input type="button" onclick="ajax();" value="ajaxsubmit">
 </div>
 </body>
 </html>

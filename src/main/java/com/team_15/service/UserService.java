@@ -18,4 +18,9 @@ public class UserService {
     public User findUser(String username){
         return userDao.findUser(username);
     }
+
+    public void addUser(final User user){
+        userDao.addUser(user);
+    }
+
 }

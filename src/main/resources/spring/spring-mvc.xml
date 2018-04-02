@@ -11,8 +11,7 @@
                         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <!--启用spring的一些annotation -->
     <context:annotation-config/>
-    <context:component-scan base-package="com.team_15"
-                            annotation-config="true" />
+    <context:component-scan base-package="com.team_15" annotation-config="true" />
 
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
     <context:component-scan base-package="com.team_15.controller">
@@ -58,7 +57,6 @@
         <property name="jdbcUrl" value="jdbc:mysql://143.167.9.220/cloud?useUnicode=true&amp;amp;characterEncodi"></property>
         <property name="initialPoolSize" value="1"></property>
         <property name="maxPoolSize" value="10"></property>
-
     </bean>
 
     <bean id="cloudJdbcTemplate"
