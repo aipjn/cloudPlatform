@@ -20,31 +20,41 @@
         <a href="upload" class="w3-bar-item w3-button">Upload</a>
         <a href="#" class="w3-bar-item w3-button">Login</a>
     </div>
-
-    <div class="w3-container">
+    <div class="w3-container ">
         <h1>Home</h1>
     </div>
+
+
 </div>
+<div style="padding-left: 5em;padding-right: 5em;">
+    <div class="w3-container" >
 
-<div class="w3-container" style="display: -webkit-inline-box;">
+        <c:forEach var="app" items="${apps}"
+                   varStatus="status">
 
-    <c:forEach var="app" items="${apps}"
-               varStatus="status">
-
-        <div class="w3-card-4" style="width:30%;margin: 10px">
-            <header class="w3-container w3-light-grey">
-                <h3>${app.name}</h3>
-            </header>
-            <div class="w3-container">
-                <img src="${app.icon}" alt="Avatar" class="w3-left w3-circle w3-margin-right"
-                     style="width:100px;height: 100px;margin-top: 20px;">
-                <p>${app.description}</p><br>
+            <div class="w3-card-4" style="width:22em;margin: 1em; display: inline-grid">
+                <header class="w3-container w3-light-grey">
+                    <h3>${app.name}</h3>
+                </header>
+                <div class="w3-container" style="margin-bottom: 1em">
+                    <img src="${app.icon}" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                         style="width:8em;height: 8em;margin-top: 1em;">
+                    <p>${app.description}</p><br>
+                </div>
+                <button class="w3-button w3-block w3-dark-grey">Open</button>
+                <%--<div style="padding:1em;">--%>
+                    <%--<button class="w3-button w3-white w3-border w3-border-blue">disable</button>--%>
+                    <%--<button class="w3-button w3-white w3-border w3-border-red">active</button>--%>
+                <%--</div>--%>
             </div>
-            <button class="w3-button w3-block w3-dark-grey">Open</button>
-        </div>
-    </c:forEach>
 
-
+        </c:forEach>
+    </div>
+    <div class="footer w3-container w3-white">
+        <hr>
+        <h4> other websites </h4>
+        <a href="upload.jsp">websites</a>
+    </div>
 </div>
 </body>
 </html>
