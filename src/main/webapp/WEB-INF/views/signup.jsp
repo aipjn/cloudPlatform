@@ -6,7 +6,6 @@
     <meta name="description" content="Sing in">
     <meta name="author" content="Jijing">
     <link rel="icon" href="image/sheffield_573b22062c317.png">
-    <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 
     <title>Sign up</title>
 
@@ -17,39 +16,16 @@
     <link href="css/signin.css" rel="stylesheet">
 
     <script>
-
         function createAccount() {
-
-            var email = $("#inputEmail").val();
-            var name = $("#userName").val();
-            var password = $("#inputPassword").val();
-            var d={
-                name: name,
-                email: email,
-                password: password
-            };
-            $.ajax({
-                url: 'addUser',
-                method: 'post',
-                contentType:"application/json",
-                data: JSON.stringify(d),
-                success: function (data) {
-                    window.location.href = "home?name=" + data.name;
-                    return true;
-                },
-                error: function () {
-                    alert("error");
-                }
-            });
+            window.location.href = "index.html"
         }
     </script>
 </head>
 
-<%--<body class="text-center" background="../assets/img/Sheffield-gb12161_uxga.jpg">--%>
-<form class="form-signin">
-    <!--<img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
+<body class="text-center" background="https://static1.squarespace.com/static/54733839e4b02590326819da/t/548877d5e4b07e036546f5d6/1418229719304/Sheffield+Cathedral-014.jpg?format=1500w">
+<form class="form-signin" style="background-color: white">
     <img class="mb-4" src="image/SheffieldLogo.png" class="img-responsive" width="250" height="111">
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <%--<h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>--%>
     <label for="inputEmail" class="sr-only">Email address</label>
     <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
     <label for="userName" class="sr-only">Username</label>
@@ -58,7 +34,8 @@
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
     <div class="checkbox mb-3">
         <label>
-            <input type="checkbox" value="accept"> I agree to the Terms of Service and the Privacy Policy.
+            <input type="checkbox" value="accept">
+            <span>I agree to the Terms of Service and the Privacy Policy.</span>
         </label>
     </div>
     <button class="btn btn-lg btn-primary btn-block" onclick="createAccount()">Creat an account</button>
