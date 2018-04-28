@@ -45,10 +45,13 @@ public class HomeController {
         return "home";
     }
 
-//    @RequestMapping(value = "/appState", method = RequestMethod.POST)
-//    @ResponseBody
-//    public Object appState(@RequestBody  User user, HttpServletRequest request) {
-//
-//    }
+    @RequestMapping(value = "/appState", method = RequestMethod.POST)
+    @ResponseBody
+    public Object appState(@RequestParam  String AppId, @RequestParam int state) {
+        appService.changeState(AppId, state);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("state", "success");
+        return jsonObject;
+    }
 
 }

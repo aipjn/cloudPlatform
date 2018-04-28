@@ -41,4 +41,8 @@ public class AppService {
         appDao.useAppLog(userId, appName, price);
     }
 
+    public void changeState (String ID, int state){
+        appDao.changeState(ID, state);
+    }
+
 }

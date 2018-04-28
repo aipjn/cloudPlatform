@@ -15,6 +15,27 @@
     <title>home</title>
 </head>
 
+<script type="text/javascript">
+    function openApp(name){
+
+    }
+
+    function changeState(AppId, state){
+        $.ajax({
+            url: 'appState',
+            method: 'post',
+            data: {state: state, AppId:AppId},
+            success: function (data) {
+                if(data.state == "success"){
+                    alert("success");
+                }
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    }
+</script>
 
 <style>
     body, h1, h2, h3, h4, h5, h6 {
@@ -46,12 +67,6 @@
 
 
 
-<div class="w3-container ">
-    <%--<h1>Home</h1>--%>
-
-    ${user.name}
-    ${user.balance}
-</div>
 
 
 <%--<div style="padding-left: 5em;padding-right: 5em;">--%>
@@ -102,15 +117,20 @@
 
             </div>
 
+            <c:if test="${user.name == 'admin'}">
+                <c:if test="${app.active == 1}">
+                    active
+                </c:if>
+                <div>
+                    <button class="w3-button w3-yellow w3-border" onclick="changeState('${app.ID}', 0);">disable</button>
+                    <button class="w3-button w3-yellow w3-border" onclick="changeState('${app.ID}', 1);">active</button>
+                </div>
+            </c:if>
         </c:forEach>
     </div>
 
 
-    <%--<div class="footer w3-container w3-white">--%>
-        <%--<hr>--%>
-        <%--<h4> other websites </h4>--%>
-        <%--<a href="upload.jsp">websites</a>--%>
-    <%--</div>--%>
+
 
 </div>
 

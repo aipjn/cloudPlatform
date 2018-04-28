@@ -46,21 +46,23 @@
         <div class="w3-right w3-hide-small">
             <a href="home" class="w3-bar-item w3-button"><i class="fa fa-home"></i> HOME</a>
             <a href="upload" class="w3-bar-item w3-button"><i class="fa fa-upload"></i> UPLOAD</a>
+            <c:if test="${sessionScope.user == null}">
             <a href="login" class="w3-bar-item w3-button"><i class="fa fa-sign-in"></i> SIGN IN</a>
-
+            </c:if>
+            <c:if test="${sessionScope.user != null}">
             <div class="w3-dropdown-hover">
-                <button class="w3-button"><i class="fa fa-user-circle"></i> ACCOUNT</button>
+                <button class="w3-button"><i class="fa fa-user-circle"></i> ${sessionScope.user.name}</button>
                 <div class="w3-dropdown-content w3-bar-block w3-border">
                     <a href="#" class="w3-bar-item w3-button"><i class="fa fa-address-book-o"></i> Detail</a>
-                    <a href="#" class="w3-bar-item w3-button"><i class="fa fa-sign-out"></i> SIGN OUT</a>
+                    <a href="signOut" class="w3-bar-item w3-button"><i class="fa fa-sign-out"></i> SIGN OUT</a>
                 </div>
             </div>
 
-            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-diamond"></i> 0.00</a>
+            <a href="#" class="w3-bar-item w3-button"><i class="fa fa-diamond"></i> ${sessionScope.user.balance}</a>
+            </c:if>
 
 
-
-            <a href="signup" class="w3-bar-item w3-button"><i class="fa fa-sign-out	"></i> SIGN UP</a>
+            <a href="signUp" class="w3-bar-item w3-button"><i class="fa fa-sign-out	"></i> SIGN UP</a>
 
         </div>
         <!-- Hide right-floated links on small screens and replace them with a menu icon -->

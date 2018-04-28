@@ -74,4 +74,9 @@ public class AppDao {
                 new Timestamp(new Date().getTime()),price);
     }
 
+    public void changeState(String ID, int state) {
+        String sql = "update apps set active = ? where ID = ?";
+        cloudJdbcTemplate.update(sql, state, ID);
+    }
+
 }

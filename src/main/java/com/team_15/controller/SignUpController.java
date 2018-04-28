@@ -25,8 +25,8 @@ public class SignUpController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/signup")
-    public String signup(){
+    @RequestMapping("/signUp")
+    public String signUp(){
         return "signup";
     }
 

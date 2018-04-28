@@ -54,5 +54,11 @@ public class LoginController {
         return jsonObject;
     }
 
+    @RequestMapping("/signOut")
+    public String signOut(HttpServletRequest request){
+        request.getSession().removeAttribute("user");
+        return "index";
+    }
+
 
 }

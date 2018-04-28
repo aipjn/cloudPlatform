@@ -54,7 +54,7 @@ public class UserDao {
     }
 
     public void reducePeanut(String userId, int balance) {
-        String sql = "upate user set balance = ? where userId = ?";
+        String sql = "update user set balance = ? where userId = ?";
         cloudJdbcTemplate.update(sql, balance, userId);
     }
 
