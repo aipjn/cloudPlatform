@@ -46,11 +46,16 @@ public class UserDao {
         return user;
     }
 
-    public void addUser(final User user) {
+    public void addUser(User user) {
         String uuid = UUID.randomUUID().toString();
         String sql = "insert into user values('" + uuid + "', ?, ?, ?, ?, ?)";
         cloudJdbcTemplate.update(sql, user.getName(), user.getPassword(),1000,
                 user.getEmail(), new Timestamp(new Date().getTime()));
+    }
+
+    public void reducePeanut(String userId, int balance) {
+        String sql = "upate user set balance = ? where userId = ?";
+        cloudJdbcTemplate.update(sql, balance, userId);
     }
 
 }

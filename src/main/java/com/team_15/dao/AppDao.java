@@ -67,4 +67,11 @@ public class AppDao {
                 app.getIcon(), app.getActive(), new Timestamp(new Date().getTime()));
     }
 
+    public void useAppLog(String userId, String appName, int price) {
+        String uuid = UUID.randomUUID().toString();
+        String sql = "insert into usage_log values(?, ?, ?, ?, ?)";
+        cloudJdbcTemplate.update(sql, uuid, userId, appName,
+                new Timestamp(new Date().getTime()),price);
+    }
+
 }

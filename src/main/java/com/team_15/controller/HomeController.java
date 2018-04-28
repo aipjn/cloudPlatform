@@ -24,9 +24,6 @@ public class HomeController {
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
     private AppService appService;
 
     //映射一个action
@@ -36,10 +33,22 @@ public class HomeController {
         if(user != null){
             request.setAttribute("username", user.getName());
             request.setAttribute("balance", user.getBalance());
+            // amdin user have access to all apps, other users have access
+            // just to active apps
+            if(user.getName().equals("admin")){
+                request.setAttribute("apps", appService.findAllApps());
+                return "home";
+            }
         }
-        //返回一个home.jsp这个视图
+        //return home.jsp page
         request.setAttribute("apps", appService.findAllActiveApps());
         return "home";
     }
+
+//    @RequestMapping(value = "/appState", method = RequestMethod.POST)
+//    @ResponseBody
+//    public Object appState(@RequestBody  User user, HttpServletRequest request) {
+//
+//    }
 
 }

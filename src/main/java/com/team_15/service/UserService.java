@@ -31,4 +31,8 @@ public class UserService {
         return false;
     }
 
+    public void changeBalance(String userId, int balance){
+        userDao.reducePeanut(userId, balance);
+    }
+
 }

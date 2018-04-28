@@ -27,10 +27,18 @@ public class AppService {
         return appDao.findAllActiveApps();
     }
 
+    public List<App> findAllApps(){
+        return appDao.findAllApps();
+    }
+
     public boolean CheckAppName(String name) {
         if(appDao.findAppByName(name) != null)
             return false;
         return true;
+    }
+
+    public void useAppLog(String userId, String appName, int price){
+        appDao.useAppLog(userId, appName, price);
     }
 
 }
