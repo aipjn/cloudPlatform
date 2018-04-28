@@ -33,10 +33,12 @@ public class SignUpController {
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     @ResponseBody
     public Object addUser(@RequestBody  User user) {
-        userService.addUser(user);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", user.getName());
-        jsonObject.put("state", "success");
+        jsonObject.put("state", "error");
+        if(userService.checkUser(user)){
+            userService.addUser(user);
+            jsonObject.put("state", "success");
+        }
         return jsonObject;
     }
 

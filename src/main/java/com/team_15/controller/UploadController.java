@@ -1,6 +1,7 @@
 package com.team_15.controller;
 
 import com.team_15.pojo.App;
+import com.team_15.pojo.User;
 import com.team_15.service.AppService;
 import com.team_15.service.UserService;
 import net.sf.json.JSONObject;
@@ -48,10 +49,22 @@ public class UploadController {
         app.setName(request.getParameter("name"));
         app.setDescription(request.getParameter("description"));
         app.setIcon(request.getParameter("icon"));
+        app.setPrice(Integer.valueOf(request.getParameter("price")));
         app.setActive(0);
-        appService.addApp(app);
+        appService.addApp(app, ((User)request.getSession().getAttribute("user")).getID());
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("state", "success");
+        return jsonObject;
+    }
+
+    @RequestMapping(value = "/checkAppName", method = RequestMethod.POST)
+    @ResponseBody
+    public Object checkAppName(@RequestParam String name){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("state", "error");
+        if(appService.CheckAppName(name)){
+            jsonObject.put("state", "success");
+        }
         return jsonObject;
     }
 }

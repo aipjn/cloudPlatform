@@ -16,11 +16,19 @@ public class UserService {
     UserDao userDao;
 
     public User findUser(String username){
-        return userDao.findUser(username);
+        return userDao.findUserByName(username);
     }
 
-    public void addUser(final User user){
+    public void addUser(User user){
         userDao.addUser(user);
+    }
+
+    public boolean checkUser(User user){
+        if(userDao.findUserByName(user.getName()) == null &&
+                userDao.findUserByEamil(user.getEmail()) == null){
+            return true;
+        }
+        return false;
     }
 
 }

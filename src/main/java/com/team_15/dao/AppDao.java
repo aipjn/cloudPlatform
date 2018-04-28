@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -46,10 +48,23 @@ public class AppDao {
         return apps;
     }
 
-    public void addApp(final App app) {
-        final String uuid = UUID.randomUUID().toString();
-        String sql = "insert into apps values('" + uuid + "', '1111' , ?, ?, ?, ?)";
-        cloudJdbcTemplate.update(sql, app.getName(),app.getDescription(), app.getIcon(), app.getActive());
+    public App findAppByName(String name) {
+        String sql = "select * from apps where name = ?";
+        App app = null;
+        try {
+            RowMapper<App> rm = ParameterizedBeanPropertyRowMapper.newInstance(App.class);
+            app =  cloudJdbcTemplate.queryForObject(sql, new Object[]{name}, rm);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return app;
+    }
+
+    public void addApp(App app, String userId) {
+        String uuid = UUID.randomUUID().toString();
+        String sql = "insert into apps values('" + uuid + "', '\" + userId + \"' , ?, ?, ?, ?, ?, ?)";
+        cloudJdbcTemplate.update(sql, app.getName(), app.getPrice(), app.getDescription(),
+                app.getIcon(), app.getActive(), new Timestamp(new Date().getTime()));
     }
 
 }

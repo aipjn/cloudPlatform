@@ -11,6 +11,7 @@ public class App implements Serializable {
     private String userID;
     private String name;
     private String description;
+    private int price;
     private String icon;
     private int active;
 
@@ -44,6 +45,14 @@ public class App implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public String getIcon() {

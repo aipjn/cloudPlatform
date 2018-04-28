@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="js/upload.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>upload</title>
     <style>
         .names{
@@ -21,11 +22,7 @@
 
 <div class="w3-teal">
 
-    <div class="w3-bar w3-black">
-        <a href="#" class="w3-bar-item w3-button">Home</a>
-        <a href="#" class="w3-bar-item w3-button">Upload</a>
-        <a href="#" class="w3-bar-item w3-button">Login</a>
-    </div>
+    <%@include file="header.jsp"%>
 
     <div class="w3-container">
         <h1>Home</h1>
@@ -54,6 +51,14 @@
         </div>
 
         <div class="w3-row w3-section">
+            <div class="names"><span>Price:</span></div>
+            <div class="w3-rest">
+                <input class="w3-input w3-border" id="price" name="price"
+                       type="number" placeholder="How much is per use of your app">
+            </div>
+        </div>
+
+        <div class="w3-row w3-section">
             <div class="names"><span>Icon:</span></div>
             <div class="w3-rest" style="float:left">
                 <input class="w3-input w3-border" style="width:23em;" id="picFileVal"
@@ -61,7 +66,7 @@
             </div>
             <div style="float:right">
                 <input type="button" value="Choose a file" onclick="picFile.click()" class="w3-input w3-white w3-border w3-border-blue">
-                <input type="file" id="picFile" style="display:none" onchange="change();picFileVal.value=this.value">
+                <input type="file" id="picFile" style="display:none" onchange="change();">
             </div>
         </div>
         <div style="padding-left:40%">
@@ -76,10 +81,10 @@
             </div>
             <div style="float:right">
                 <input type="button" value="Choose a file" onclick="warFile.click()" class="w3-input w3-white w3-border w3-border-blue">
-                <input type="file" id="warFile" style="display:none" onchange="change();warFileVal.value=this.value">
+                <input type="file" id="warFile" style="display:none" onchange="warFileVal.value=this.value">
             </div>
         </div>
-        <button type="button" class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding" onclick="upload();">Upload</button>
+        <button type="button" class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding" onclick="check();">Upload</button>
     </form>
 </div>
 
