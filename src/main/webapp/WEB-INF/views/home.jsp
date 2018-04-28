@@ -44,7 +44,7 @@
 
 <%@include file="header.jsp" %>
 
-<br><br><br>
+
 
 <div class="w3-container ">
     <%--<h1>Home</h1>--%>

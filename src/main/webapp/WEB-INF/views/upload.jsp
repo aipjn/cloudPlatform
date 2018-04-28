@@ -7,27 +7,45 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="js/upload.js"></script>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <title>upload</title>
     <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+        body, html {
+            height: 100%;
+            line-height: 1.8;
+        }
+        /* Full height image header */
+        .bgimg-1 {
+            background-position: center;
+            background-size: cover;
+            background-image: url("/image/Sheffield-gb12161_uxga.jpg");
+            min-height: 100%;
+        }
+        .w3-bar .w3-button {
+            padding: 16px;
+        }
+
         .names{
             float:left;padding-top: 0.5em;padding-right: 0.5em;color: black;width: 8em;
         }
 
     </style>
+
 </head>
+
 
 <body>
 
 
-<div class="w3-teal">
+
 
     <%@include file="header.jsp"%>
 
-    <div class="w3-container">
-        <h1>Home</h1>
-    </div>
-</div>
+
 
 <div style="text-align: -webkit-center">
     <div class="w3-container w3-center" style="margin-top:2em;">
