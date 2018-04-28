@@ -49,7 +49,7 @@
 
 <div style="text-align: -webkit-center">
     <div class="w3-container w3-center" style="margin-top:2em;">
-        <h1>To earn peanuts, upload your own app</h1>
+        <h1>To earn peanuts, upload your own app :)</h1>
     </div>
     <form class="w3-container w3-light-grey w3-text-blue w3-margin" style="width: 50%">
 
@@ -78,31 +78,38 @@
 
         <div class="w3-row w3-section">
             <div class="names"><span>Icon:</span></div>
-            <div class="w3-rest" style="float:left">
-                <input class="w3-input w3-border" style="width:23em;" id="picFileVal"
-                       placeholder="Choose a picture as your app icon" type="text" disabled="disabled">
-            </div>
-            <div style="float:right">
-                <input type="button" value="Choose a file" onclick="picFile.click()" class="w3-input w3-white w3-border w3-border-blue">
+            <%--<div class="w3-rest" style="float:left">--%>
+                <%--<input class="w3-input w3-border" id="picFileVal"--%>
+                       <%--placeholder="Choose a picture as your app icon" type="text" disabled="disabled">--%>
+            <%--</div>--%>
+            <div style="float:left">
+                <input type="button" value="Choose an icon" onclick="picFile.click()" class="w3-blue w3-btn">
                 <input type="file" id="picFile" style="display:none" onchange="change();">
             </div>
         </div>
-        <div style="padding-left:40%">
-            <img src="image/demo.jpeg"  id="preview" alt="" class="w3-left w3-circle w3-margin-right"
-                style="width:100px;height: 100px;margin: 20px;">
+        <div class="w3-center">
+            <img src="image/icon_demo.jpg" id="preview" class="w3-center" style="width: 20%">
         </div>
+
+
         <div class="w3-row w3-section">
             <div class="names"><span>War File:</span></div>
-            <div class="w3-rest" style="float:left">
-                <input class="w3-input w3-border" style="width:23em;"  id="warFileVal"
-                       placeholder="Choose your app war file" type="text" disabled="disabled">
+            <%--<div class="w3-rest" style="float:left">--%>
+                <%--<input class="w3-input w3-border" style="width:23em;"  id="warFileVal"--%>
+                       <%--placeholder="Choose your app war file" type="text" disabled="disabled">--%>
+            <%--</div>--%>
+
+            <div style="float:left">
+                <input type="button" value="Choose a war file" onclick="warFile.click()" class="w3-blue w3-btn">
+                <input type="file" id="warFile" style="display:none" onchange="warFileVal.value=this.value;$('#warFileVal').show();">
             </div>
-            <div style="float:right">
-                <input type="button" value="Choose a file" onclick="warFile.click()" class="w3-input w3-white w3-border w3-border-blue">
-                <input type="file" id="warFile" style="display:none" onchange="warFileVal.value=this.value">
+
+            <div style="float: right">
+                <input class="w3-input w3-leftbar w3-light-grey"  id="warFileVal" type="text" style="display: none" disabled="disabled">
             </div>
+
         </div>
-        <button type="button" class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding" onclick="check();">Upload</button>
+        <button type="button" class="w3-btn w3-block w3-section w3-blue w3-ripple w3-padding" onclick="check();">Upload</button>
     </form>
 </div>
 

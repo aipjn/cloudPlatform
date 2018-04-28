@@ -97,7 +97,7 @@
                 </div>
 
                 <div class="w3-section" style="padding-left: 5%; padding-right: 5%">
-                    <button class="w3-green w3-btn" style="width: 100%;">${app.price}</button>
+                    <button class="w3-green w3-btn" style="width: 100%;"><i class="fa fa-diamond"></i> ${app.price}</button>
                 </div>
 
             </div>
