@@ -38,6 +38,9 @@
           <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.1" />
           <element id="library" level="project" name="Maven: commons-lang:commons-lang:2.5" />
           <element id="library" level="project" name="Maven: net.sf.ezmorph:ezmorph:1.0.3" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:3.0.6.RELEASE" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.6.8" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.6.8" />
         </element>
       </element>
       <element id="directory" name="META-INF">
