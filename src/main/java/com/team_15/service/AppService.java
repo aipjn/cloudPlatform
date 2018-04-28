@@ -19,12 +19,18 @@ public class AppService {
     @Autowired
     AppDao appDao;
 
-    public void addApp(final App app){
-        appDao.addApp(app);
+    public void addApp(App app, String userId){
+        appDao.addApp(app, userId);
     }
 
     public List<App> findAllActiveApps() {
         return appDao.findAllActiveApps();
+    }
+
+    public boolean CheckAppName(String name) {
+        if(appDao.findAppByName(name) != null)
+            return false;
+        return true;
     }
 
 }

@@ -11,6 +11,7 @@ public class User implements Serializable {
     private String name;
     private String email;
     private String password;
+    private int balance;
 
     public String getID() {
         return ID;
@@ -42,5 +43,13 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int blance) {
+        this.balance = blance;
     }
 }

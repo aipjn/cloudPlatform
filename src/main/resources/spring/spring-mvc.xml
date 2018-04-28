@@ -49,6 +49,8 @@
         <property name="resolveLazily" value="true"/>
     </bean>
 
+    <bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
+
     <!-- 配置C3P0数据源 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="user" value="root"></property>

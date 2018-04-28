@@ -15,13 +15,11 @@
 
 <div class="w3-teal">
 
-    <div class="w3-bar w3-black">
-        <a href="#" class="w3-bar-item w3-button">Home</a>
-        <a href="upload" class="w3-bar-item w3-button">Upload</a>
-        <a href="#" class="w3-bar-item w3-button">Login</a>
-    </div>
+    <%@include file="header.jsp"%>
     <div class="w3-container ">
         <h1>Home</h1>
+        ${user.name}
+        ${user.balance}
     </div>
 
 
@@ -35,6 +33,7 @@
             <div class="w3-card-4" style="width:22em;margin: 1em; display: inline-grid">
                 <header class="w3-container w3-light-grey">
                     <h3>${app.name}</h3>
+                    <h3>Price: ${app.price}</h3>
                 </header>
                 <div class="w3-container" style="margin-bottom: 1em">
                     <img src="${app.icon}" alt="Avatar" class="w3-left w3-circle w3-margin-right"

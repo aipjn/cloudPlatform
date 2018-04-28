@@ -32,6 +32,11 @@ public class HomeController {
     //映射一个action
     @RequestMapping("/home")
     public String home(HttpServletRequest request){
+        User user = (User)request.getSession().getAttribute("user");
+        if(user != null){
+            request.setAttribute("username", user.getName());
+            request.setAttribute("balance", user.getBalance());
+        }
         //返回一个home.jsp这个视图
         request.setAttribute("apps", appService.findAllActiveApps());
         return "home";

@@ -12,18 +12,18 @@ function change() {
         alert("picture size can not be bigger than 1M！");
         return;
     }
+    $("#picFileVal").val(picFile.value);
     picReader.readAsDataURL(myFile);
     picReader.onload = function(){
         picture.src=this.result;
     }
 }
 
-function upload() {
+function check() {
     if (picReader.result == null){
         alert("please select a picture！");
         return;
     }
-
     var warFile = document.getElementById("warFile");
     var fileType = warFile.value.split(".")[warFile.value.split(".").length - 1];
     if(fileType!='war'){
@@ -35,14 +35,36 @@ function upload() {
         alert("please select a war file！");
         return;
     }
+    var name =$("#appName").val();
+    $.ajax({
+        url: 'checkAppName',
+        method: 'post',
+        data: "name=" + name,
+        success: function (data) {
+            if(data.state == "success"){
+                upload();
+            }else{
+                alert("The name is taken, please try another one")
+            }
+        },
+        error: function () {
+            alert("error");
+        }
+    });
+}
+
+function upload() {
+    var warFile = document.getElementById("warFile");
+    var myFile = warFile.files[0];
     var description = $("#description").val();
     var name = $("#appName").val();
+    var price = $("#price").val();
     var formData = new FormData();
     formData.append("warFile", myFile);
     formData.append("name", name);
+    formData.append("price", price);
     formData.append("description", description);
     formData.append("icon", picReader.result);
-    formData.append("description", description);
     $.ajax({
         url: 'addApp',
         method: 'post',
