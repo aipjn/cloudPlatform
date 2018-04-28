@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="cloud_control:war exploded">
-    <output-path>$PROJECT_DIR$/target/maven_springmvc</output-path>
+    <output-path>$USER_HOME$/Desktop</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
