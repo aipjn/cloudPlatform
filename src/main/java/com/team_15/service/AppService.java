@@ -37,6 +37,10 @@ public class AppService {
         return true;
     }
 
+    public App findAppByName(String name) {
+        return appDao.findAppByName(name);
+    }
+
     public void useAppLog(String userId, String appName, int price){
         appDao.useAppLog(userId, appName, price);
     }

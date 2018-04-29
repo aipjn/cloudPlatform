@@ -1,5 +1,6 @@
 package com.team_15.controller;
 
+import com.team_15.pojo.App;
 import com.team_15.pojo.User;
 import com.team_15.service.AppService;
 import com.team_15.service.UserService;
@@ -54,20 +55,24 @@ public class ApiController {
     @RequestMapping(value = "/reducePeanut", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     public Object reducePeanut(@RequestParam String userName, @RequestParam String password,
-                               @RequestParam String appName, @RequestParam String targetUserName,
-                               @RequestParam int reduceAmount) {
+                               @RequestParam String appName, @RequestParam String targetUserName) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("state", "error");
         User user = userService.findUser(userName);
         if (user != null && password.equals(user.getPassword())){
 
             User targetUser = userService.findUser(targetUserName);
-            if(targetUser.getBalance() < reduceAmount){
+            App app = appService.findAppByName(appName);
+            if(app == null){
+                jsonObject.put("msg", "do not have that app");
+                return jsonObject;
+            }
+            if(targetUser.getBalance() < app.getPrice()){
                 jsonObject.put("msg", "target user do not have enough peanuts");
             } else {
-                userService.changeBalance(targetUser.getID(), targetUser.getBalance() - reduceAmount%2);
-                userService.changeBalance(user.getID(), targetUser.getBalance() + reduceAmount);
-                appService.useAppLog(targetUser.getID(), appName, reduceAmount);
+                userService.changeBalance(targetUser.getID(), targetUser.getBalance() - app.getPrice());
+                userService.changeBalance(user.getID(), targetUser.getBalance() + app.getPrice()%2);
+                appService.useAppLog(targetUser.getID(), appName, app.getPrice());
                 jsonObject.put("state", "success");
             }
         } else {

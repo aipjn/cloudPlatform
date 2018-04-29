@@ -35,4 +35,8 @@ public class UserService {
         userDao.reducePeanut(userId, balance);
     }
 
+    public User findUserByID(String userId){
+        return userDao.findUserByID(userId);
+    }
+
 }

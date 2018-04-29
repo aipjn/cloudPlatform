@@ -54,8 +54,21 @@ public class UserDao {
     }
 
     public void reducePeanut(String userId, int balance) {
-        String sql = "update user set balance = ? where userId = ?";
+        String sql = "update user set balance = ? where id = ?";
         cloudJdbcTemplate.update(sql, balance, userId);
     }
+
+    public User findUserByID(String userId) {
+        String sql = "select * from user where id = ?";
+        User user = null;
+        try {
+            RowMapper<User> rm = ParameterizedBeanPropertyRowMapper.newInstance(User.class);
+            user = cloudJdbcTemplate.queryForObject(sql, new Object[]{userId}, rm);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return user;
+    }
+
 
 }

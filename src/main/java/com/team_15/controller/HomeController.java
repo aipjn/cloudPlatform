@@ -1,5 +1,6 @@
 package com.team_15.controller;
 
+import com.team_15.pojo.App;
 import com.team_15.pojo.User;
 import com.team_15.service.AppService;
 import com.team_15.service.UserService;
@@ -26,6 +27,8 @@ public class HomeController {
     @Autowired
     private AppService appService;
 
+    @Autowired
+    private UserService userService;
     //映射一个action
     @RequestMapping("/home")
     public String home(HttpServletRequest request){
@@ -50,6 +53,33 @@ public class HomeController {
     public Object appState(@RequestParam  String AppId, @RequestParam int state) {
         appService.changeState(AppId, state);
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("state", "success");
+        return jsonObject;
+    }
+
+
+    @RequestMapping(value = "/openApp", method = RequestMethod.POST)
+    @ResponseBody
+    public Object openApp(@RequestParam  String appName, @RequestParam int price, HttpServletRequest request) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("state", "error");
+        User user = (User)request.getSession().getAttribute("user");
+        if(user == null){
+            jsonObject.put("msg", "please sign in first.");
+            return jsonObject;
+        }
+        if(user.getBalance() < price){
+            jsonObject.put("msg", "you do not have enough peanuts");
+            return jsonObject;
+        }
+        App app = appService.findAppByName(appName);
+        userService.changeBalance(user.getID(), user.getBalance() - app.getPrice());
+        userService.changeBalance(app.getUserID(),
+                userService.findUserByID(app.getUserID()).getBalance() + app.getPrice()%2);
+        appService.useAppLog(user.getID(), appName, app.getPrice());
+        user = userService.findUserByID(app.getUserID());
+        // update user session after it's balance changed
+        request.getSession().setAttribute("user", user);
         jsonObject.put("state", "success");
         return jsonObject;
     }

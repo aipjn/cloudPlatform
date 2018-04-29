@@ -16,7 +16,26 @@
 </head>
 
 <script type="text/javascript">
-    function openApp(name){
+    function openApp(name, price){
+        var confirm = window.confirm("you will open app: " + name + ", it will cost peanuts:" + price);
+        if ( confirm == true)
+        {
+            $.ajax({
+                url: 'openApp',
+                method: 'post',
+                data: {appName: name, price: price},
+                success: function (data) {
+                    if(data.state == "success"){
+                        window.location.href = window.location.href.split("/")[0] + name;
+                    }else{
+                        alert(data.msg);
+                    }
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+        }
 
     }
 
@@ -112,7 +131,8 @@
                 </div>
 
                 <div class="w3-section" style="padding-left: 5%; padding-right: 5%">
-                    <button class="w3-green w3-btn" style="width: 100%;"><i class="fa fa-diamond"></i> ${app.price}</button>
+                    <button class="w3-green w3-btn" style="width: 100%;" onclick="openApp('${app.name}', ${app.price})"
+                    ><i class="fa fa-diamond"></i> ${app.price}</button>
                 </div>
 
             </div>
