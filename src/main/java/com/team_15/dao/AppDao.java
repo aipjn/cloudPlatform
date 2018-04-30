@@ -62,8 +62,8 @@ public class AppDao {
 
     public void addApp(App app, String userId) {
         String uuid = UUID.randomUUID().toString();
-        String sql = "insert into apps values('" + uuid + "', '\" + userId + \"' , ?, ?, ?, ?, ?, ?)";
-        cloudJdbcTemplate.update(sql, app.getName(), app.getPrice(), app.getDescription(),
+        String sql = "insert into apps values('" + uuid + "', ? , ?, ?, ?, ?, ?, ?)";
+        cloudJdbcTemplate.update(sql, userId, app.getName(), app.getPrice(), app.getDescription(),
                 app.getIcon(), app.getActive(), new Timestamp(new Date().getTime()));
     }
 

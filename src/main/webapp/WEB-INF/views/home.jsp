@@ -26,7 +26,8 @@
                 data: {appName: name, price: price},
                 success: function (data) {
                     if(data.state == "success"){
-                        window.location.href = window.location.href.split("/")[0] + name;
+                        window.location.href = window.location.href.split("/")[0] + name +
+                            "?userName=${sessionScope.user.name}";
                     }else{
                         alert(data.msg);
                     }
