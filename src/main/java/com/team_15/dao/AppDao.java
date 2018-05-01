@@ -84,7 +84,7 @@ public class AppDao {
 
 
     public List<Usage> findAllUsage(int type, String userName) {
-        String sql = "select * from usage_log where type = ? and userName = ?";
+        String sql = "select * from usage_log where type = ? and userName = ? ORDER BY time DESC";
         List<Usage> usages = null;
         try {
             RowMapper<Usage> rm = ParameterizedBeanPropertyRowMapper.newInstance(Usage.class);

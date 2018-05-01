@@ -38,7 +38,13 @@ public class LoginController {
     public Object userLogin(@RequestBody  User user, HttpServletRequest request) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("state", "error");
-        User userLocal = userService.findUser(user.getName());
+        User userLocal = null;
+        if(user.getName() == null || user.getName().equals("")){
+            userLocal = userService.findUserByemail(user.getEmail());
+        }else{
+            userLocal = userService.findUser(user.getName());
+        }
+
         if (userLocal != null && user.getPassword().equals(userLocal.getPassword())){
             ServletContext context =  request.getSession().getServletContext();
             jsonObject.put("state", "success");
