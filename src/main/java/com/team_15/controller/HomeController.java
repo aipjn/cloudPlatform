@@ -54,4 +54,10 @@ public class HomeController {
         return jsonObject;
     }
 
+    @RequestMapping("/detail")
+    public String detail(HttpServletRequest request){
+        request.getSession().removeAttribute("user");
+        return "user_detail";
+    }
+
 }
