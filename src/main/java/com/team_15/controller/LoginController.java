@@ -24,8 +24,6 @@ import java.util.Set;
 @Controller
 @RequestMapping("/")
 public class LoginController {
-    //添加一个日志器
-    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     private UserService userService;
