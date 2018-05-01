@@ -48,9 +48,9 @@ public class LoginController {
         if (userLocal != null && user.getPassword().equals(userLocal.getPassword())){
             ServletContext context =  request.getSession().getServletContext();
             jsonObject.put("state", "success");
-            request.getSession().setAttribute("user", userService.findUser(user.getName()));
+            request.getSession().setAttribute("user", userService.findUser(userLocal.getName()));
             Set<String> onlineUsers = (Set)context.getAttribute("onlineUsers");
-            onlineUsers.add(user.getName());
+            onlineUsers.add(userLocal.getName());
             context.setAttribute("onlineUsers", onlineUsers);
         } else {
             return jsonObject;
