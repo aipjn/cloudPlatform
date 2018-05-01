@@ -73,15 +73,25 @@ public class HomeController {
             return jsonObject;
         }
         App app = appService.findAppByName(appName);
+        User appOwner = userService.findUserByID(app.getUserID());
         userService.changeBalance(user.getID(), user.getBalance() - app.getPrice());
         userService.changeBalance(app.getUserID(),
-                userService.findUserByID(app.getUserID()).getBalance() + app.getPrice()%2);
-        appService.useAppLog(user.getID(), appName, app.getPrice());
+                appOwner.getBalance() + app.getPrice()%2);
+        appService.useAppLog(user.getName(), appName, app.getPrice(), 0);
+        appService.useAppLog(appOwner.getName(), appName,app.getPrice()%2, 1);
         user = userService.findUserByID(app.getUserID());
         // update user session after it's balance changed
         request.getSession().setAttribute("user", user);
         jsonObject.put("state", "success");
         return jsonObject;
+    }
+
+    @RequestMapping("/detail")
+    public String detail(HttpServletRequest request){
+        User user = (User)request.getSession().getAttribute("user");
+        request.setAttribute("expense", appService.findAllUsage(0, user.getName()));
+        request.setAttribute("income", appService.findAllUsage(1, user.getName()));
+        return "user_detail";
     }
 
 }

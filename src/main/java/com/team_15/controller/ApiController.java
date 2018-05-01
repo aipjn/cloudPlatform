@@ -72,7 +72,8 @@ public class ApiController {
             } else {
                 userService.changeBalance(targetUser.getID(), targetUser.getBalance() - app.getPrice());
                 userService.changeBalance(user.getID(), targetUser.getBalance() + app.getPrice()%2);
-                appService.useAppLog(targetUser.getID(), appName, app.getPrice());
+                appService.useAppLog(targetUser.getID(), appName, app.getPrice(), 0);
+                appService.useAppLog(user.getID(), appName, app.getPrice(), 1);
                 jsonObject.put("state", "success");
             }
         } else {

@@ -1,6 +1,7 @@
 package com.team_15.dao;
 
 import com.team_15.pojo.App;
+import com.team_15.pojo.Usage;
 import com.team_15.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -67,16 +68,31 @@ public class AppDao {
                 app.getIcon(), app.getActive(), new Timestamp(new Date().getTime()));
     }
 
-    public void useAppLog(String userId, String appName, int price) {
-        String uuid = UUID.randomUUID().toString();
-        String sql = "insert into usage_log values(?, ?, ?, ?, ?)";
-        cloudJdbcTemplate.update(sql, uuid, userId, appName,
-                new Timestamp(new Date().getTime()),price);
-    }
-
     public void changeState(String ID, int state) {
         String sql = "update apps set active = ? where ID = ?";
         cloudJdbcTemplate.update(sql, state, ID);
+    }
+
+
+    // type 0 for expense type 1 for income
+    public void useAppLog(String userName, String appName, int price, int type) {
+        String uuid = UUID.randomUUID().toString();
+        String sql = "insert into usage_log values(?, ?, ?, ?, ?, ?)";
+        cloudJdbcTemplate.update(sql, uuid, userName, appName,
+                new Timestamp(new Date().getTime()),price, type);
+    }
+
+
+    public List<Usage> findAllUsage(int type, String userName) {
+        String sql = "select * from usage_log where type = ? and userName = ?";
+        List<Usage> usages = null;
+        try {
+            RowMapper<Usage> rm = ParameterizedBeanPropertyRowMapper.newInstance(Usage.class);
+            usages =  cloudJdbcTemplate.query(sql, new Object[]{type, userName}, rm);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return usages;
     }
 
 }

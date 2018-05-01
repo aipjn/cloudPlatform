@@ -3,6 +3,7 @@ package com.team_15.service;
 import com.team_15.dao.AppDao;
 import com.team_15.dao.UserDao;
 import com.team_15.pojo.App;
+import com.team_15.pojo.Usage;
 import com.team_15.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,8 +42,12 @@ public class AppService {
         return appDao.findAppByName(name);
     }
 
-    public void useAppLog(String userId, String appName, int price){
-        appDao.useAppLog(userId, appName, price);
+    public void useAppLog(String userName, String appName, int price, int type){
+        appDao.useAppLog(userName, appName, price, type);
+    }
+
+    public List<Usage> findAllUsage(int type, String userName) {
+        return appDao.findAllUsage(type, userName);
     }
 
     public void changeState (String ID, int state){
