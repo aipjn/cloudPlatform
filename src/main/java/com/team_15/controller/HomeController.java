@@ -1,5 +1,6 @@
 package com.team_15.controller;
 
+import com.team_15.pojo.App;
 import com.team_15.pojo.User;
 import com.team_15.service.AppService;
 import com.team_15.service.UserService;
@@ -26,6 +27,8 @@ public class HomeController {
     @Autowired
     private AppService appService;
 
+    @Autowired
+    private UserService userService;
     //映射一个action
     @RequestMapping("/home")
     public String home(HttpServletRequest request){
@@ -54,9 +57,40 @@ public class HomeController {
         return jsonObject;
     }
 
+
+    @RequestMapping(value = "/openApp", method = RequestMethod.POST)
+    @ResponseBody
+    public Object openApp(@RequestParam  String appName, @RequestParam int price, HttpServletRequest request) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("state", "error");
+        User user = (User)request.getSession().getAttribute("user");
+        if(user == null){
+            jsonObject.put("msg", "please sign in first.");
+            return jsonObject;
+        }
+        if(user.getBalance() < price){
+            jsonObject.put("msg", "you do not have enough peanuts");
+            return jsonObject;
+        }
+        App app = appService.findAppByName(appName);
+        User appOwner = userService.findUserByID(app.getUserID());
+        userService.changeBalance(user.getID(), user.getBalance() - app.getPrice());
+        userService.changeBalance(app.getUserID(),
+                appOwner.getBalance() + app.getPrice()%2);
+        appService.useAppLog(user.getName(), appName, app.getPrice(), 0);
+        appService.useAppLog(appOwner.getName(), appName,app.getPrice()%2, 1);
+        user = userService.findUserByID(app.getUserID());
+        // update user session after it's balance changed
+        request.getSession().setAttribute("user", user);
+        jsonObject.put("state", "success");
+        return jsonObject;
+    }
+
     @RequestMapping("/detail")
     public String detail(HttpServletRequest request){
-        request.getSession().removeAttribute("user");
+        User user = (User)request.getSession().getAttribute("user");
+        request.setAttribute("expense", appService.findAllUsage(0, user.getName()));
+        request.setAttribute("income", appService.findAllUsage(1, user.getName()));
         return "user_detail";
     }
 
