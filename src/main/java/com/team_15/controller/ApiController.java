@@ -21,7 +21,6 @@ import java.util.Set;
 /**
  * Created by a-pc on 2017/11/7.
  */
-// 注解标注此类为springmvc的controller，url映射为"/"
 @Controller
 @RequestMapping("/")
 public class ApiController {
@@ -31,6 +30,7 @@ public class ApiController {
     @Autowired
     private AppService appService;
 
+    // check login state
     @RequestMapping(value = "/start", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     public Object start(HttpServletRequest request, @RequestParam String userName,
@@ -58,8 +58,8 @@ public class ApiController {
                                @RequestParam String appName, @RequestParam String targetUserName) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("state", "error");
-        User user = userService.findUser(userName);
-        if (user != null && password.equals(user.getPassword())){
+        User appOwner = userService.findUser(userName);
+        if (appOwner != null && password.equals(appOwner.getPassword())){
 
             User targetUser = userService.findUser(targetUserName);
             App app = appService.findAppByName(appName);
@@ -70,10 +70,20 @@ public class ApiController {
             if(targetUser.getBalance() < app.getPrice()){
                 jsonObject.put("msg", "target user do not have enough peanuts");
             } else {
+                // user will be charged per use of an app, the user's charged peanuts will be
+                // allocated to app owner and admin
+                // change user's balance, app owner's balance and admin's balance
                 userService.changeBalance(targetUser.getID(), targetUser.getBalance() - app.getPrice());
-                userService.changeBalance(user.getID(), targetUser.getBalance() + app.getPrice()%2);
-                appService.useAppLog(targetUser.getID(), appName, app.getPrice(), 0);
-                appService.useAppLog(user.getID(), appName, app.getPrice(), 1);
+                userService.changeBalance(app.getUserID(),
+                        appOwner.getBalance() + (int)app.getPrice()/2);
+                User admin = userService.findUserByID("123456");
+                userService.changeBalance(admin.getID(),
+                        admin.getBalance() + app.getPrice() - (int)app.getPrice()/2);
+                // save records of peanuts change
+                appService.useAppLog(admin.getName(), appName, app.getPrice() - (int)app.getPrice()/2, 1);
+                appService.useAppLog(targetUser.getName(), appName, app.getPrice(), 0);
+                appService.useAppLog(appOwner.getName(), appName,(int)app.getPrice()/2, 1);
+
                 jsonObject.put("state", "success");
             }
         } else {

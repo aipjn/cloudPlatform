@@ -15,12 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * Created by a-pc on 2017/11/7.
  */
-// 注解标注此类为springmvc的controller，url映射为"/"
 @Controller
 @RequestMapping("/")
 public class SignUpController {
-    //添加一个日志器
-    private static final Logger logger = LoggerFactory.getLogger(SignUpController.class);
 
     @Autowired
     private UserService userService;

@@ -63,9 +63,9 @@ public class AppDao {
 
     public void addApp(App app, String userId) {
         String uuid = UUID.randomUUID().toString();
-        String sql = "insert into apps values('" + uuid + "', ? , ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into apps values('" + uuid + "', ? , ?, ?, ?, ?, ?, ?, ?)";
         cloudJdbcTemplate.update(sql, userId, app.getName(), app.getPrice(), app.getDescription(),
-                app.getIcon(), app.getActive(), new Timestamp(new Date().getTime()));
+                app.getIcon(), app.getActive(), new Timestamp(new Date().getTime()), app.getLocation());
     }
 
     public void changeState(String ID, int state) {
@@ -84,7 +84,7 @@ public class AppDao {
 
 
     public List<Usage> findAllUsage(int type, String userName) {
-        String sql = "select * from usage_log where type = ? and userName = ? ORDER BY time DESC";
+        String sql = "select * from usage_log where type = ? and userName = ? ORDER BY time DESC LIMT 100";
         List<Usage> usages = null;
         try {
             RowMapper<Usage> rm = ParameterizedBeanPropertyRowMapper.newInstance(Usage.class);

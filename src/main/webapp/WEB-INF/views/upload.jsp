@@ -64,15 +64,23 @@
             <div class="names"><span>Description:</span></div>
             <div class="w3-rest">
                 <input class="w3-input w3-border" id="description" name="description" maxlength="100"
-                       type="text" placeholder="One sentence to describ your app">
+                       type="text" placeholder="One sentence to describe your app">
             </div>
         </div>
 
         <div class="w3-row w3-section">
             <div class="names"><span>Price:</span></div>
             <div class="w3-rest">
-                <input class="w3-input w3-border" id="price" name="price" max="100"
-                       type="number" placeholder="How much is per use of your app (should be no more than 100)">
+                <input class="w3-input w3-border" id="price" name="price" max="10"
+                       type="number" placeholder="How much is per use of your app (should be no more than 10)">
+            </div>
+        </div>
+
+        <div class="w3-row w3-section">
+            <div class="names"><span>location:</span></div>
+            <div class="w3-rest">
+                <input class="w3-input w3-border" id="location" name="location"
+                       type="text" placeholder="Location of your home page like 'app/home' It can be null">
             </div>
         </div>
 

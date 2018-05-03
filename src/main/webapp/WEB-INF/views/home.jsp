@@ -16,7 +16,7 @@
 </head>
 
 <script type="text/javascript">
-    function openApp(name, price){
+    function openApp(name, price, loc){
         var confirm = window.confirm("you will open app: " + name + ", it will cost peanuts:" + price);
         if ( confirm == true)
         {
@@ -26,8 +26,14 @@
                 data: {appName: name, price: price},
                 success: function (data) {
                     if(data.state == "success"){
-                        window.location.href = window.location.href.split("/")[0] + name +
-                            "?userName=${sessionScope.user.name}";
+                        debugger;
+                        var location = "http://" + window.location.href.split("/")[2] + "/" + name + "/"
+                        if(loc){
+                            location = location + loc
+                        }
+                        location = location + "?userName=${sessionScope.user.name}";
+
+                        window.location.href = location;
                     }else{
                         alert(data.msg);
                     }
@@ -147,7 +153,7 @@ debugger;
                 </div>
 
                 <div class="w3-section" style="padding-left: 5%; padding-right: 5%">
-                    <button class="w3-green w3-btn" style="width: 100%;" onclick="openApp('${app.name}', ${app.price})"
+                    <button class="w3-green w3-btn" style="width: 100%;" onclick="openApp('${app.name}', ${app.price}, '${app.location}')"
                     ><i class="fa fa-diamond"></i> ${app.price}</button>
                 </div>
 

@@ -17,12 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by a-pc on 2017/11/7.
  */
-// 注解标注此类为springmvc的controller，url映射为"/"
 @Controller
 @RequestMapping("/")
 public class HomeController {
-    //添加一个日志器
-    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
     @Autowired
     private AppService appService;
@@ -74,11 +71,19 @@ public class HomeController {
         }
         App app = appService.findAppByName(appName);
         User appOwner = userService.findUserByID(app.getUserID());
+        // user will be charged per use of an app, the user's charged peanuts will be
+        // allocated to app owner and admin
+        // change user's balance, app owner's balance and admin's balance
         userService.changeBalance(user.getID(), user.getBalance() - app.getPrice());
         userService.changeBalance(app.getUserID(),
-                appOwner.getBalance() + app.getPrice()%2);
+                appOwner.getBalance() + (int)app.getPrice()/2);
+        User admin = userService.findUserByID("123456");
+        userService.changeBalance(admin.getID(),
+                admin.getBalance() + app.getPrice() - (int)app.getPrice()/2);
+        // save records of peanuts change
+        appService.useAppLog(admin.getName(), appName, app.getPrice() - (int)app.getPrice()/2, 1);
         appService.useAppLog(user.getName(), appName, app.getPrice(), 0);
-        appService.useAppLog(appOwner.getName(), appName,app.getPrice()%2, 1);
+        appService.useAppLog(appOwner.getName(), appName,(int)app.getPrice()/2, 1);
         user = userService.findUserByID(app.getUserID());
         // update user session after it's balance changed
         request.getSession().setAttribute("user", user);

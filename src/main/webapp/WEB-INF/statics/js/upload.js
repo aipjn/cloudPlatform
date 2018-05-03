@@ -59,12 +59,14 @@ function upload() {
     var description = $("#description").val();
     var name = $("#appName").val();
     var price = $("#price").val();
+    var location = $("#location").val();
     var formData = new FormData();
     formData.append("warFile", myFile);
     formData.append("name", name);
     formData.append("price", price);
     formData.append("description", description);
     formData.append("icon", picReader.result);
+    formData.append("location", location);
     $.ajax({
         url: 'addApp',
         method: 'post',

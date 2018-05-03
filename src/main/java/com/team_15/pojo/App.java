@@ -14,6 +14,7 @@ public class App implements Serializable {
     private int price;
     private String icon;
     private int active;
+    private String location;
 
     public String getID() {
         return ID;
@@ -71,4 +72,11 @@ public class App implements Serializable {
         this.active = active;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }

@@ -20,12 +20,9 @@ import java.sql.Blob;
 /**
  * Created by a-pc on 2017/11/7.
  */
-// 注解标注此类为springmvc的controller，url映射为"/"
 @Controller
 @RequestMapping("/")
 public class UploadController {
-    //添加一个日志器
-    private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
 
     @Autowired
     private AppService appService;
@@ -38,6 +35,7 @@ public class UploadController {
     @RequestMapping(value = "/addApp", method = RequestMethod.POST)
     @ResponseBody
     public Object addApp(@RequestParam MultipartFile warFile, HttpServletRequest request){
+        // save war file in tomcat webapps
         String savedDir = request.getSession().getServletContext().getRealPath("");
         savedDir = savedDir.replace(savedDir.split("/")[savedDir.split("/").length-1], "");
         File newFile = new File(savedDir + request.getParameter("name") + ".war");
@@ -50,6 +48,7 @@ public class UploadController {
         app.setDescription(request.getParameter("description"));
         app.setIcon(request.getParameter("icon"));
         app.setPrice(Integer.valueOf(request.getParameter("price")));
+        app.setLocation(request.getParameter("location"));
         app.setActive(0);
         appService.addApp(app, ((User)request.getSession().getAttribute("user")).getID());
         JSONObject jsonObject = new JSONObject();

@@ -20,7 +20,7 @@ import java.util.Set;
 /**
  * Created by a-pc on 2017/11/7.
  */
-// 注解标注此类为springmvc的controller，url映射为"/"
+
 @Controller
 @RequestMapping("/")
 public class LoginController {
@@ -48,7 +48,9 @@ public class LoginController {
         if (userLocal != null && user.getPassword().equals(userLocal.getPassword())){
             ServletContext context =  request.getSession().getServletContext();
             jsonObject.put("state", "success");
+            // save login user in session
             request.getSession().setAttribute("user", userService.findUser(userLocal.getName()));
+            // save login user in ServletContext
             Set<String> onlineUsers = (Set)context.getAttribute("onlineUsers");
             onlineUsers.add(userLocal.getName());
             context.setAttribute("onlineUsers", onlineUsers);
@@ -60,6 +62,12 @@ public class LoginController {
 
     @RequestMapping("/signOut")
     public String signOut(HttpServletRequest request){
+        // remove user from session and ServletContext
+        ServletContext context =  request.getSession().getServletContext();
+        User user = (User)request.getSession().getAttribute("user");
+        Set<String> onlineUsers = (Set)context.getAttribute("onlineUsers");
+        onlineUsers.remove(user.getName());
+        context.setAttribute("onlineUsers", onlineUsers);
         request.getSession().removeAttribute("user");
         return "index";
     }
