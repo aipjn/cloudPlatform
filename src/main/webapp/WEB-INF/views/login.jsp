@@ -63,7 +63,7 @@
 
     <style>
         body{
-            background-image: url(http://www.footprintphoto.biz/wp-content/uploads/2016/05/Footprint-Photography-Sheffield-from-the-air-005-Edit.jpg);
+            background-image: url("/image/Footprint-Photography-Sheffield-from-the-air-005-Edit.jpg");
             background-size: 100%;
         }
     </style>
