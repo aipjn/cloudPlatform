@@ -18,6 +18,10 @@
             height: 100%;
             line-height: 1.8;
         }
+        /*img{*/
+            /*position:absolute;*/
+            /*z-index:-1;*/
+        /*}*/
         /* Full height image header */
         .bgimg-1 {
             background-position: center;
@@ -39,18 +43,22 @@
 
 
 <body>
+<div id="loading"  style="display: none;text-align: center;
+    opacity: 0.8;background: #b7b5b0;
+    z-index: 999; position:absolute;height: 100%;width: 100%">
+    <img src="/image/loading_12.gif" >
+</div>
+
+<%@include file="header.jsp"%>
+
+<div id = "upage" style="text-align: -webkit-center" style="position: absolute;">
 
 
 
-
-    <%@include file="header.jsp"%>
-
-
-
-<div style="text-align: -webkit-center">
     <div class="w3-container w3-center" style="margin-top:2em;">
         <h1>To earn peanuts, upload your own app :)</h1>
     </div>
+
     <form class="w3-container w3-light-grey w3-text-blue w3-margin" style="width: 50%">
 
         <div class="w3-row w3-section">
@@ -63,7 +71,7 @@
         <div class="w3-row w3-section">
             <div class="names"><span>Description:</span></div>
             <div class="w3-rest">
-                <input class="w3-input w3-border" id="description" name="description" maxlength="100"
+                <input class="w3-input w3-border" id="description" name="description" maxlength="50"
                        type="text" placeholder="One sentence to describe your app">
             </div>
         </div>
@@ -77,7 +85,7 @@
         </div>
 
         <div class="w3-row w3-section">
-            <div class="names"><span>location:</span></div>
+            <div class="names"><span>Location:</span></div>
             <div class="w3-rest">
                 <input class="w3-input w3-border" id="location" name="location"
                        type="text" placeholder="Location of your home page like 'app/home' It can be null">
@@ -120,6 +128,7 @@
         <button type="button" class="w3-btn w3-block w3-section w3-blue w3-ripple w3-padding" onclick="check();">Upload</button>
     </form>
 </div>
+
 
 </body>
 </html>

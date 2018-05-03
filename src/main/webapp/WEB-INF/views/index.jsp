@@ -25,6 +25,24 @@
     }
 </style>
 
+<script>
+
+    var mySidebar = document.getElementById("mySidebar");
+
+    function w3_open() {
+        if (mySidebar.style.display = 'block') {
+            mySidebar.style.display = 'none';
+        } else {
+            mySidebar.style.display = 'block';
+        }
+    }
+
+    // Close the sidebar with the close button
+    function w3_close() {
+        mySidebar.style.display = "none";
+    }
+</script>
+
 
 <body>
 
@@ -50,6 +68,8 @@
 <!-- Sidebar on small screens when clicking the menu icon -->
 <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close</a>
+    <a href="api" class="w3-bar-item w3-button"><i class="fa fa-chain"></i> OUR API</a>
+    <a href="#app" class="w3-bar-item w3-button"><i class="fa fa-pencil"></i> OWN DESIGN APP</a>
     <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
 </nav>
 
@@ -69,11 +89,6 @@
     <h3 class="w3-center">Enjoy Our Own Design App</h3>
     <%--<p class="w3-center w3-large">Key features of our company</p >--%>
     <div class="w3-row-padding w3-center" style="margin-top:64px">
-        <%--<div class="w3-quarter">--%>
-        <%--<i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>--%>
-        <%--<p class="w3-large">Responsive</p >--%>
-        <%--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p >--%>
-        <%--</div>--%>
         <div class="w3-half">
             <i class="fa fa-exchange w3-margin-bottom w3-jumbo"></i>
             <p class="w3-large">Exchange</p >
@@ -85,11 +100,6 @@
             <p class="w3-large">Restaurant</p >
             <p>Try different restaurants with different cuisines</p >
         </div>
-        <%--<div class="w3-quarter">--%>
-        <%--<i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>--%>
-        <%--<p class="w3-large">Support</p >--%>
-        <%--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p >--%>
-        <%--</div>--%>
     </div>
 </div>
 

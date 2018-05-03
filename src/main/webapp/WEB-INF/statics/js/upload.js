@@ -21,26 +21,28 @@ function change() {
 
 function check() {
     if (picReader.result == null){
-        alert("please select a picture！");
+        alert("Please select a picture！");
         return;
     }
     var warFile = document.getElementById("warFile");
     var fileType = warFile.value.split(".")[warFile.value.split(".").length - 1];
     if(fileType!='war'){
-        alert("please select a war file！");
+        alert("Please select a war file！");
         return;
     }
     var myFile = warFile.files[0];
     if(!myFile){
-        alert("please select a war file！");
+        alert("Please select a war file！");
         return;
     }
     var name =$("#appName").val();
+    $("#loading").show();
     $.ajax({
         url: 'checkAppName',
         method: 'post',
         data: "name=" + name,
         success: function (data) {
+            $("#loading").hide();
             if(data.state == "success"){
                 upload();
             }else{
@@ -48,7 +50,8 @@ function check() {
             }
         },
         error: function () {
-            alert("error");
+            $("#loading").hide();
+            alert("Error");
         }
     });
 }
@@ -74,12 +77,14 @@ function upload() {
         contentType : false,
         data: formData,
         success: function (data) {
-            alert("suc");
-            // window.location.href = "home?name=" + data.name;
-            return true;
+            var confirm = window.confirm("You have uploaded your app, please wait for the administrator check");
+            if ( confirm == true){
+                window.location.href = "home";
+                return true;
+            }
         },
         error: function () {
-            alert("error");
+            alert("Upload Error");
         }
     });
 }

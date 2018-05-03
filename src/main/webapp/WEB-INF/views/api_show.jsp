@@ -1,12 +1,4 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: kylan
-  Date: 2018/4/30
-  Time: 下午7:18
-  To change this template use File | Settings | File Templates.
---%>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -19,6 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <script>
+
+    </script>
 
     <style>
         body, h1, h2, h3, h4, h5, h6 {
@@ -118,39 +113,44 @@
 
 
     <div id="api1" class="w3-card-4 w3-light-grey" style="width:50%; margin-left: 30%;">
-        <h4 class="w3-center">api1 description</h4>
+        <h1 class="w3-center">START API</h1>
         <div  style=" margin-left: 2em;">
-        This api is for other apps connecting to our platform. We will call other apps by<br>
-        there location of home page followed username like this<br>
-        "http://localhost:8080/Restaurant/restaurant?userName=admin". The other apps should<br>
-        send a request to our platform ask the state of that user. It should allow users to<br>
-        access their app only if our platform return a state success says this user has<br>
-        logined. To call this api app also need send your own userName and password in our<br>
-        platform.<br>
+            <h4>
+                This api is for other apps connecting to our platform. We will call other apps by<br>
+                there location of home page followed username like this<br>
+                "http://localhost:8080/Restaurant/restaurant?userName=admin". The other apps should<br>
+                send a request to our platform ask the state of that user. It should allow users to<br>
+                access their app only if our platform return a state success says this user has<br>
+                logined. To call this api app also need send your own userName and password in our<br>
+                platform.<br>
 
-        This api url is http://143.167.9.220:8080/cloud/start and require parameters<br>
-        userName, password, targetUserName.<br>
-        Where userName is your userName targetUserName is the user you want to check.<br>
-        It will return json data if success it is {state: success} if not it will be<br>
-        {state: error, msg: a message says where goes wrong}<br>
-        See code examples by click CODE EXAMPLE<br>
+                This api url is http://143.167.9.220:8080/cloud/start and require parameters<br>
+                userName, password, targetUserName.<br>
+                Where userName is your userName targetUserName is the user you want to check.<br>
+                It will return json data if success it is {state: success} if not it will be<br>
+                {state: error, msg: a message says where goes wrong}<br>
+                See code examples by click CODE EXAMPLE<br>
+            </h4>
         </div>
     </div>
 
 
 
     <div id="api2" class="w3-card-4 w3-light-grey" style="width:50%; margin-left: 30%; display: none;">
-        <h4 class="w3-center">api2 description</h4>
+        <h1 class="w3-center">CODE EXAMPLE</h1>
         <div  style=" margin-left: 2em;">
-        Normally our platform only charge user when user first open an app. However if<br>
-        other app wants extra charge for other reasons. This api is developed for extra<br>
-        charge.<br>
-        This api url is http://143.167.9.220:8080/cloud/reducePeanut and require parameters<br>
-        userName, password, appName, targetUserName.<br>
-        Where userName is your userName targetUserName is the user you want to charge.<br>
-        It will return json data if success it is {state: success} if not it will be<br>
-        {state: error, msg: a message says where goes wrong}<br>
-        See code examples by click CODE EXAMPLE<br>
+            <h4>
+                Normally our platform only charge user when user first open an app. However if<br>
+                other app wants extra charge for other reasons. This api is developed for extra<br>
+                charge.<br>
+                This api url is http://143.167.9.220:8080/cloud/reducePeanut and require parameters<br>
+                userName, password, appName, targetUserName.<br>
+                Where userName is your userName targetUserName is the user you want to charge.<br>
+                It will return json data if success it is {state: success} if not it will be<br>
+                {state: error, msg: a message says where goes wrong}<br>
+                See code examples by click CODE EXAMPLE<br>
+            </h4>
+
         </div>
     </div>
 

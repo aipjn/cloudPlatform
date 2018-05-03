@@ -17,7 +17,7 @@
 
 <script type="text/javascript">
     function openApp(name, price, loc){
-        var confirm = window.confirm("you will open app: " + name + ", it will cost peanuts:" + price);
+        var confirm = window.confirm("You will buy the app " + name + ", it costs " + price + " peanuts.");
         if ( confirm == true)
         {
             $.ajax({
