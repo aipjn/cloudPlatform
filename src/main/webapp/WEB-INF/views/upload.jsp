@@ -71,8 +71,8 @@
         <div class="w3-row w3-section">
             <div class="names"><span>Price:</span></div>
             <div class="w3-rest">
-                <input class="w3-input w3-border" id="price" name="price"
-                       type="number" placeholder="How much is per use of your app">
+                <input class="w3-input w3-border" id="price" name="price" max="100"
+                       type="number" placeholder="How much is per use of your app (should be no more than 100)">
             </div>
         </div>
 

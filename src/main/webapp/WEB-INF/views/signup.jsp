@@ -19,11 +19,26 @@
 
     <script>
 
+        document.onkeydown = function (event) {
+            if (event.keyCode == "13") {
+                createAccount();
+            }
+        };
+
         function createAccount() {
 
             var email = $("#inputEmail").val();
             var name = $("#userName").val();
             var password = $("#inputPassword").val();
+
+            var myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+            
+            if (!myReg.test(email)) {
+                alert("Please enter a valid Email address");
+                return false;
+            }
+
+
             var d = {
                 name: name,
                 email: email,
@@ -35,8 +50,11 @@
                 contentType: "application/json",
                 data: JSON.stringify(d),
                 success: function (data) {
-                    window.location.href = "home";
-                    return true;
+                    if(data.state == "success"){
+                        window.location.href = "home";
+                        return true;
+                    }
+                    alert("username or email have been taken");
                 },
                 error: function () {
                     alert("error");
@@ -44,13 +62,20 @@
             });
         }
     </script>
+
+    <style>
+        body{
+            background-image: url(http://www.footprintphoto.biz/wp-content/uploads/2016/05/Footprint-Photography-Sheffield-from-the-air-005-Edit.jpg);
+            background-size: 100%;
+        }
+    </style>
 </head>
 
 <%@include file="header.jsp" %>
 
 <%--<body class="text-center" background="../assets/img/Sheffield-gb12161_uxga.jpg">--%>
-
-<div class="w3-center">
+<body>
+<div class="w3-center" style="background: white">
     <form class="form-signin">
         <!--<img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
         <img class="mb-4" src="image/SheffieldLogo.png" class="img-responsive" width="250" height="111">
@@ -61,11 +86,11 @@
         <input type="text" id="userName" class="form-control" placeholder="Username" required>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="accept"> I agree to the Terms of Service and the Privacy Policy.
-            </label>
-        </div>
+        <%--<div class="checkbox mb-3">--%>
+            <%--<label>--%>
+                <%--<input type="checkbox" value="accept"> I agree to the Terms of Service and the Privacy Policy.--%>
+            <%--</label>--%>
+        <%--</div>--%>
         <button class="btn btn-lg btn-primary btn-block" type="button" onclick="createAccount()">Creat an account</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
     </form>

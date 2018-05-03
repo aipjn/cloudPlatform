@@ -34,7 +34,10 @@
         <a href="#home" class="w3-bar-item w3-button w3-wide">TEAM15</a>
         <!-- Right-sided navbar links -->
         <div class="w3-right w3-hide-small">
+            <a href="api" class="w3-bar-item w3-button"><i class="fa fa-chain"></i> OUR API</a>
+            <a href="#app" class="w3-bar-item w3-button"><i class="fa fa-pencil"></i> OWN DESIGN APP</a>
             <a href="#contact" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> CONTACT</a>
+
         </div>
         <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
@@ -58,46 +61,37 @@
         <%--<span class="w3-large">Stop wasting valuable time with projects that just isn't you.</span>--%>
         <p><a href="home" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Start for convenient</a></p>
     </div>
-    <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
-        <i class="fa fa-facebook-official w3-hover-opacity"></i>
-        <i class="fa fa-instagram w3-hover-opacity"></i>
-        <i class="fa fa-snapchat w3-hover-opacity"></i>
-        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-        <i class="fa fa-twitter w3-hover-opacity"></i>
-        <i class="fa fa-linkedin w3-hover-opacity"></i>
-    </div>
 </header>
 
+
 <!-- About Section -->
-<div class="w3-container" style="padding:128px 16px" id="about">
-    <h3 class="w3-center">Enjoy Our Design App</h3>
-    <%--<p class="w3-center w3-large">Key features of our company</p>--%>
+<div class="w3-container" style="padding:128px 16px" id="app">
+    <h3 class="w3-center">Enjoy Our Own Design App</h3>
+    <%--<p class="w3-center w3-large">Key features of our company</p >--%>
     <div class="w3-row-padding w3-center" style="margin-top:64px">
         <%--<div class="w3-quarter">--%>
-            <%--<i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>--%>
-            <%--<p class="w3-large">Responsive</p>--%>
-            <%--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>--%>
+        <%--<i class="fa fa-desktop w3-margin-bottom w3-jumbo w3-center"></i>--%>
+        <%--<p class="w3-large">Responsive</p >--%>
+        <%--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p >--%>
         <%--</div>--%>
         <div class="w3-half">
             <i class="fa fa-exchange w3-margin-bottom w3-jumbo"></i>
-            <p class="w3-large">Exchange</p>
-            <p>Check the Real Time Exchange Rates and find the nearest exchange bank</p>
+            <p class="w3-large">Exchange</p >
+            <p>Check the Real Time Exchange Rates and find the nearest exchange bank</p >
         </div>
 
         <div class="w3-half">
             <i class="material-icons" style="font-size:72px">restaurant</i>
-            <p class="w3-large">Restaurant</p>
-            <p>Try different restaurants with different cuisines</p>
+            <p class="w3-large">Restaurant</p >
+            <p>Try different restaurants with different cuisines</p >
         </div>
         <%--<div class="w3-quarter">--%>
-            <%--<i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>--%>
-            <%--<p class="w3-large">Support</p>--%>
-            <%--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>--%>
+        <%--<i class="fa fa-cog w3-margin-bottom w3-jumbo"></i>--%>
+        <%--<p class="w3-large">Support</p >--%>
+        <%--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p >--%>
         <%--</div>--%>
     </div>
 </div>
-
-
 
 
 

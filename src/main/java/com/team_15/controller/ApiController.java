@@ -83,5 +83,10 @@ public class ApiController {
 
     }
 
+    @RequestMapping("/api")
+    public String detail(HttpServletRequest request){
+        return "api_show";
+    }
+
 
 }

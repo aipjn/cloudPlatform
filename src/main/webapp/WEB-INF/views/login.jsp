@@ -19,6 +19,12 @@
 
     <script>
 
+        document.onkeydown = function (event) {
+            if (event.keyCode == "13") {
+                login();
+            }
+        };
+
         function login() {
 
             var name = $("#userName").val();
@@ -27,6 +33,15 @@
                 name: name,
                 password: password
             };
+            var myReg=/^[a-zA-Z0-9_-]+@([a-zA-Z0-9]+\.)+(com|cn|net|org)$/;
+
+            if (myReg.test(name)) {
+                data = {
+                    email: name,
+                    password: password
+                };
+            }
+
             $.ajax({
                 url: 'userLogin',
                 method: 'post',
@@ -45,19 +60,25 @@
             });
         }
     </script>
+
+    <style>
+        body{
+            background-image: url(http://www.footprintphoto.biz/wp-content/uploads/2016/05/Footprint-Photography-Sheffield-from-the-air-005-Edit.jpg);
+            background-size: 100%;
+        }
+    </style>
 </head>
 <body>
 
-
     <%@include file="header.jsp"%>
 
-    <div class="w3-center">
+    <div class="w3-center" style="background: white">
         <form class="form-signin">
             <!--<img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">-->
             <img class="mb-4" src="image/SheffieldLogo.png" class="img-responsive" width="250" height="111">
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
             <label for="userName" class="sr-only">Username</label>
-            <input type="text" id="userName"  class="form-control"  placeholder="Username" >
+            <input type="text" id="userName"  class="form-control"  placeholder="Username/Email" >
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" id="inputPassword"  class="form-control" placeholder="Password" >
             <%--<div class="checkbox mb-3">--%>

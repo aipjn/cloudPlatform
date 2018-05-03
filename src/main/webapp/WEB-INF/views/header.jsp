@@ -53,7 +53,7 @@
             <div class="w3-dropdown-hover">
                 <button class="w3-button"><i class="fa fa-user-circle"></i> ${sessionScope.user.name}</button>
                 <div class="w3-dropdown-content w3-bar-block w3-border">
-                    <a href="#" class="w3-bar-item w3-button"><i class="fa fa-address-book-o"></i> Detail</a>
+                    <a href="detail" class="w3-bar-item w3-button"><i class="fa fa-address-book-o"></i> DETAIL</a>
                     <a href="signOut" class="w3-bar-item w3-button"><i class="fa fa-sign-out"></i> SIGN OUT</a>
                 </div>
             </div>
@@ -63,6 +63,8 @@
 
 
             <a href="signUp" class="w3-bar-item w3-button"><i class="fa fa-sign-out	"></i> SIGN UP</a>
+            <a href="api" class="w3-bar-item w3-button"><i class="fa fa-chain"></i> OUR API</a>
+
 
         </div>
         <!-- Hide right-floated links on small screens and replace them with a menu icon -->

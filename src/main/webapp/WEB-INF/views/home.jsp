@@ -40,7 +40,22 @@
 
     }
 
-    function changeState(AppId, state){
+    function changeState(AppId, state, statusindex){
+        var active = "#active" + statusindex;
+        var disable = "#disable" + statusindex;
+debugger;
+        if (state == 1){
+            $(active).removeClass("w3-white");
+            $(active).addClass("w3-green");
+            $(disable).removeClass("w3-red");
+            $(disable).addClass("w3-white");
+        }
+        if (state == 0){
+            $(active).removeClass("w3-green");
+            $(active).addClass("w3-white");
+            $(disable).removeClass("w3-white");
+            $(disable).addClass("w3-red");
+        }
         $.ajax({
             url: 'appState',
             method: 'post',
@@ -139,12 +154,21 @@
             </div>
 
             <c:if test="${user.name == 'admin'}">
-                <c:if test="${app.active == 1}">
-                    active
-                </c:if>
+
                 <div>
-                    <button class="w3-button w3-yellow w3-border" onclick="changeState('${app.ID}', 0);">disable</button>
-                    <button class="w3-button w3-yellow w3-border" onclick="changeState('${app.ID}', 1);">active</button>
+
+                    <c:if test="${app.active == 1}">
+                        <button id = "active${status.index}" class="w3-btn w3-green w3-border w3-section" onclick="changeState('${app.ID}', 1, ${status.index});"> Active</button>
+                        <button id = "disable${status.index}" class="w3-btn w3-white w3-border w3-section" onclick="changeState('${app.ID}', 0, ${status.index});"> Disable</button>
+
+                    </c:if>
+
+                    <c:if test="${app.active == 0}">
+                        <button id = "active${status.index}" class="w3-btn w3-white w3-border w3-section" onclick="changeState('${app.ID}', 1, ${status.index});"> Active</button>
+                        <button id = "disable${status.index}" class="w3-btn w3-red w3-border w3-section" onclick="changeState('${app.ID}', 0, ${status.index});"> Disable</button>
+                    </c:if>
+
+
                 </div>
             </c:if>
         </c:forEach>
